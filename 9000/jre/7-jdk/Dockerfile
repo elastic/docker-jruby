@@ -4,7 +4,7 @@ RUN apt-get update \
     && apt-get install -y libc6-dev --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-ENV JRUBY_VERSION 9.2.7.0
+ENV JRUBY_VERSION 9.1.17.0
 ENV JRUBY_SHA256 da7c1a5ce90015c0bafd4bca0352294e08fe1c9ec049ac51e82fe57ed50e1348
 
 RUN mkdir -p /opt/jruby \
