@@ -1,22 +1,13 @@
 FROM openjdk:12-jdk
 
-RUN apk add --no-cache \
-      bash \
-      libc6-compat
-
 ENV JRUBY_VERSION 9.2.7.0
 ENV JRUBY_SHA256 da7c1a5ce90015c0bafd4bca0352294e08fe1c9ec049ac51e82fe57ed50e1348
 
-RUN apk add --no-cache --virtual .build-deps \
-      curl \
-      tar \
-    && mkdir -p /opt/jruby \
+RUN mkdir -p /opt/jruby \
     && curl -fSL https://repo1.maven.org/maven2/org/jruby/jruby-dist/${JRUBY_VERSION}/jruby-dist-${JRUBY_VERSION}-bin.tar.gz -o /tmp/jruby.tar.gz \
     && echo "$JRUBY_SHA256 */tmp/jruby.tar.gz" | sha256sum -c - \
     && tar -zx --strip-components=1 -f /tmp/jruby.tar.gz -C /opt/jruby \
-    && rm /tmp/jruby.tar.gz \
-    && ln -s /opt/jruby/bin/jruby /usr/local/bin/ruby \
-    && apk del .build-deps
+    && update-alternatives --install /usr/local/bin/ruby ruby /opt/jruby/bin/jruby 1
 
 # set the jruby binaries in the path
 ENV PATH /opt/jruby/bin:$PATH
