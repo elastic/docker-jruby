@@ -22,5 +22,5 @@ for i in $(find . -name 'Dockerfile'); do
   else
     short=$(echo $jruby | cut -d'.' -f1-2)
   fi
-  ./tests/test.sh ${short}-${jdk_image} $jdk_version
+  ./tests/test.sh jruby:${short}-${jdk_image} $jdk_version
 done
