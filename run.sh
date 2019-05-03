@@ -42,7 +42,7 @@ function report {
   fi
 }
 
-echo "${action} docker images"
+echo "${ACTION} docker images"
 for i in ${search}; do
   jdk_image=$(basename `dirname "$i"`)
   jdk_version=$(echo $jdk_image | cut -d'-' -f1)
