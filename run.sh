@@ -63,7 +63,7 @@ for i in ${search}; do
   if [ "${ACTION}" == "build" ] ; then
     docker build --tag ${name} -< $i >> output.log 2>&1
     report $? ${name}
-  elif [ "${action}" == "push" ] ; then
+  elif [ "${ACTION}" == "push" ] ; then
     docker push ${name} >> output.log 2>&1
     report $? ${name}
   else
