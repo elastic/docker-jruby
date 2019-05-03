@@ -3,4 +3,4 @@ services:
 
 script:
   - ./update.sh && git diff --quiet HEAD
-  - ./build.sh 1.7
+  - ./build.sh "" 1.7

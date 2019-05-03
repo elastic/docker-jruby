@@ -1,5 +1,6 @@
 #!/usr/bin/env bash
-exclude=${1}
+registry=${1}
+exclude=${2}
 if [ -n "$exclude" ] ; then
   search=$(find . -path ./$exclude -prune -o -name 'Dockerfile' -print)
 else
@@ -14,7 +15,13 @@ for i in ${search}; do
   else
     short=$(echo $jruby | cut -d'.' -f1-2)
   fi
-  name="jruby:${short}-${jdk_image}"
+
+  if [ -n "${registry}" ] ; then
+    name="${registry}/jruby:${short}-${jdk_image}"
+  else
+    name="jruby:${short}-${jdk_image}"
+  fi
+
   docker build --tag ${name} -< $i >> build.log 2>&1
   if [ $? -eq 0 ] ; then
     printf '\tImage %-60s %-10s %s\n' ${name} "GENERATED"
