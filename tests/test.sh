@@ -4,7 +4,7 @@ version=${2}
 
 printf '\tTest %-30s %s\n' ${image}
 
-if [ -z "$version" ] ; then
+if [ -n "$version" ] ; then
   test_name="Test java -version '$version'"
   docker run -t --rm $image java -version | grep -q "openjdk version \"$version\|1.$version" && printf '\t\t%-40s %s\n' "${test_name}" "PASSED" || printf '\t\t%-40s %s\n' "${test_name}" "FAILED"
 fi

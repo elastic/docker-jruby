@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 exclude=${1}
 if [ -n "$exclude" ] ; then
-  search=$(find . -path ./1.7 -prune -o -name 'Dockerfile' -print)
+  search=$(find . -path ./$exclude -prune -o -name 'Dockerfile' -print)
 else
   search=$(find . -name 'Dockerfile' -print)
 fi
