@@ -5,3 +5,6 @@ script:
   - ./update.sh && git diff --quiet HEAD
   - ./run.sh --action build --exclude 1.7
   - ./run.sh --action test --exclude 1.7
+
+after_failure:
+  - cat *.log
