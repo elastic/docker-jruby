@@ -3,4 +3,5 @@ services:
 
 script:
   - ./update.sh && git diff --quiet HEAD
-  - ./build.sh "" 1.7
+  - ./run.sh --action build --exclude 1.7
+  - ./run.sh --action test --exclude 1.7
