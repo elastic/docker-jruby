@@ -24,7 +24,7 @@ RUN mkdir -p /opt/jruby/etc \
     } >> /opt/jruby/etc/gemrc
 
 # install bundler, gem requires bash to work
-RUN gem install bundler rake net-telnet xmlrpc
+RUN gem install bundler rake net-telnet xmlrpc tzinfo-data
 
 # install things globally, for great justice
 # and don't create ".bundle" in all our apps
