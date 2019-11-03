@@ -1,4 +1,8 @@
-FROM openjdk:13-jdk
+FROM openjdk:13-jdk-slim
+
+RUN apt-get update \
+    && apt-get install -y libc6-dev git tcc curl netbase --no-install-recommends \
+    && rm -rf /var/lib/apt/lists/*
 
 ENV JRUBY_VERSION 9.2.7.0
 ENV JRUBY_SHA256 da7c1a5ce90015c0bafd4bca0352294e08fe1c9ec049ac51e82fe57ed50e1348
@@ -20,7 +24,7 @@ RUN mkdir -p /opt/jruby/etc \
     } >> /opt/jruby/etc/gemrc
 
 # install bundler, gem requires bash to work
-RUN gem install bundler rake net-telnet xmlrpc
+RUN gem install bundler rake net-telnet xmlrpc tzinfo-data
 
 # install things globally, for great justice
 # and don't create ".bundle" in all our apps
