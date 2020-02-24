@@ -1,11 +1,13 @@
 FROM openjdk:8-jre
 
+RUN apt-get update && apt-get install -y libc6-dev --no-install-recommends && rm -rf /var/lib/apt/lists/*
+
 RUN apt-get update \
     && apt-get install -y libc6-dev --no-install-recommends \
     && rm -rf /var/lib/apt/lists/*
 
-ENV JRUBY_VERSION 9.2.7.0
-ENV JRUBY_SHA256 da7c1a5ce90015c0bafd4bca0352294e08fe1c9ec049ac51e82fe57ed50e1348
+ENV JRUBY_VERSION 9.2.10.0
+ENV JRUBY_SHA256 9199707712c683c525252ccb1de5cb8e75f53b790c5b57a18f6367039ec79553
 
 RUN mkdir -p /opt/jruby \
     && curl -fSL https://repo1.maven.org/maven2/org/jruby/jruby-dist/${JRUBY_VERSION}/jruby-dist-${JRUBY_VERSION}-bin.tar.gz -o /tmp/jruby.tar.gz \
