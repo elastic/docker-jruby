@@ -4,13 +4,14 @@ RUN apk add --no-cache \
       bash \
       libc6-compat
 
-ENV JRUBY_VERSION 9.2.7.0
-ENV JRUBY_SHA256 da7c1a5ce90015c0bafd4bca0352294e08fe1c9ec049ac51e82fe57ed50e1348
+ENV JRUBY_VERSION 9.2.8.0
+ENV JRUBY_SHA256 b7c58688093f54acd89d732a8bf40e3ae0ac4c92488d6f5b424c33e4fb09c7bb
 
 RUN apk add --no-cache --virtual .build-deps \
       curl \
-      tar \
-  && mkdir -p /opt/jruby \
+      tar
+
+RUN mkdir /opt/jruby \
   && curl -fSL https://repo1.maven.org/maven2/org/jruby/jruby-dist/${JRUBY_VERSION}/jruby-dist-${JRUBY_VERSION}-bin.tar.gz -o /tmp/jruby.tar.gz \
   && echo "$JRUBY_SHA256 */tmp/jruby.tar.gz" | sha256sum -c - \
   && tar -zx --strip-components=1 -f /tmp/jruby.tar.gz -C /opt/jruby \
